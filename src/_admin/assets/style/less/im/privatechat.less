@@ -1,0 +1,79 @@
+.container{
+    .callcol{
+        line-height: 24px;
+        .call-icon{
+            float:left;
+            margin-right: 2px;
+            &.right-icon{
+                float:right;
+                margin-left:2px;
+                margin-right: 0;
+                &.rotate{
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+    }
+    .friendslist{
+        .frienditem{
+            ::-webkit-scrollbar-thumb {
+                background-color: #fff;
+                border-radius: 3px;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background-color: #fff;
+            }
+            &:hover{
+                .definescroll;
+            }
+            .user-left,.user-right{
+                flex:1;
+                display:flex;
+                .overell;
+                .group-avatar{
+                    margin-right:10px;
+                    flex-shrink: 0;
+                }
+            }
+            .groupsee{
+                padding-right:12px;
+            }
+            .user-right{
+                flex-flow: row-reverse;
+                text-align: right;
+                .group-avatar{
+                    margin-right:0;
+                    margin-left:10px;
+                }
+            }
+            .friendinfo{
+                overflow: hidden;
+                .friend-name{
+                    .overell;
+                    line-height: 20px;
+                    margin:3px 0 2px;
+                    font-weight: 600;
+                }
+                .friend-uid{
+                    color: #909090;
+                    font-size:12px;
+                }
+            }
+            .msg-right-col{
+                text-align: right;
+                position: relative;
+            }
+            .msg-top{
+                .msg-time{
+                    margin-left:0;
+                }
+            }
+            .item-bottom{
+                overflow: auto;
+            }
+            .private-avatar{
+                cursor: pointer;
+            }
+        } 
+    }
+}

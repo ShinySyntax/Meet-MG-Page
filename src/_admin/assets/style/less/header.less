@@ -1,0 +1,157 @@
+.headercontainer{
+    height:90px;
+    position: fixed;
+    top:0;
+    left:280px;
+    right:0;
+    z-index: 20;
+    .header{
+        .flexbox;
+        background:#fcfcfc;
+        height:43px;
+        .head-center{
+            flex:1;
+            display: flex;
+            .operitem{
+                .flexbox;
+                cursor: pointer;
+                color:#666;
+                line-height: 43px;
+                outline: none;
+                padding-right:21px;
+                &.recent-col,&.collect-col{
+                    padding-left:42px;
+                    background: url(~@_/assets/img/common/recentopen.png) no-repeat 21px center;
+                    background-size: 15px 15px;
+                }
+                &.collect-col{
+                    background: url(~@_/assets/img/common/collect.png) no-repeat 21px center;
+                }
+                &:active,&:hover,&.active{
+                    color: #0652D4;
+                    &.recent-col{
+                        background:url(~@_/assets/img/common/recentin.png) no-repeat 21px center;
+                    }
+                    &.collect-col{
+                        background:url(~@_/assets/img/common/collectav.png) no-repeat 21px center;
+                    }
+                }
+                
+            }
+        }
+        .head-right{
+            .flexbox;
+            padding-right:21px;
+            flex-shrink: 0;
+            .avatarbg{
+                background: #F5F8FF;
+            }
+            .avatar{
+                line-height: 1;
+                cursor: pointer;
+                outline: none;
+                padding:6px 12px;
+                img{
+                    width:30px;
+                    height: 30px;
+                    margin-right:5px;
+                    border-radius: 100%;
+                }
+                .role{
+                    font-size: 10px;
+                    margin-top:3px;
+                }
+                .name{
+                    color:#333;
+                }
+                .el-icon-arrow-right,.el-icon-arrow-down{
+                    margin-left: 8px;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+.avatardrop{
+    padding:0;
+    outline: none;
+    li{
+        line-height: 42px;
+        &:hover{
+            background: #F5F5F5;
+            color:#666;
+        }
+    }
+    .dropitem{
+        .flexbox;
+    }
+}
+.recoldrop{
+    padding:0;
+    li{
+        line-height: 42px;
+        .flexbox;
+        justify-content: space-between;
+        &:hover{
+            color:@hoverBlue;
+            background: @f5Color;
+            .delcollect{
+                display: block;
+                background: url(~@_/assets/img/common/del.png) no-repeat center center;
+                background-size:12px 13px ;
+            }
+        }
+        &.collectdrag:hover{
+            background: #fff;
+            color:#666;
+        }
+        .delcollect{
+            width:12px;
+            height:13px;
+            margin-left:30px;
+        }
+        &.blue-drag-collect{
+            color:@hoverBlue;
+            background: @f5Color;
+        }
+    }
+}
+/* 退出登录弹框 */
+.layout-dialog{
+    .tmdialog-footer  .primarybtn{
+        width:224px;
+        height:40px;
+        line-height: 40px;
+    }
+    .icon{
+        display: inline-block;
+        margin-right: 13px;
+        width: 15px;
+        vertical-align: middle;
+    }
+}
+// .tmdialog{
+//   /deep/ .tmheader{
+//      height: 42px;
+//      padding: 0;
+//    }
+//   /deep/ .el-dialog__headerbtn{
+//      top: 10px;
+//    }
+// }
+
+// .tmdialog,.el-dialog,.iframe{
+//  min-width: 970px;
+//  min-height: 742px;
+
+// }
+// .tmdialog /deep/ .el-dialog{
+//  z-index: 19891016;
+//    width: 970px;
+//    height: 742px;
+//    left:0;
+//    right:0;
+//    position: fixed;
+//    top: 50%;
+//    margin-top: -371px !important
+// }

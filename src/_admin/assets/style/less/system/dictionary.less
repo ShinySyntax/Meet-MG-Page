@@ -1,0 +1,204 @@
+.container{
+    display:flex;
+    flex-direction: row;
+    background: @mainBg;
+    .leftcontent{
+        width: 19.7917vw;
+        min-width: 330px;
+        max-width: 380px;
+        background:#fff;
+        margin-right:12px;
+        border-radius: 4px;
+        .definescroll;
+        .search{
+            padding:15px 0;
+            margin:0 20px;
+            border-bottom:1px solid #F2F2F2;
+            .flexbox;
+            /deep/.el-input{
+                flex:1;
+            }
+            /deep/.el-input__inner{
+                height:30px;
+                line-height: 30px;
+            }
+            .primarybtn{
+                margin-left: 1.4583vw;
+            }
+        }
+        .diclist{
+            height: calc(100% - 60px);
+            overflow-y: auto;
+            padding:10px 13px;
+            .dic-col{
+                .flexbox;
+                line-height: 20px;
+                border-radius:20px;
+                padding:7px 20px;
+                .flexbox;
+                justify-content: space-between;
+                &:hover{
+                    background: #F8F8F8;
+                }
+                &.active{
+                    background: @f5Color;
+                    color:@buttonColor;
+                }
+                .dic-oper{
+                    width:124px;
+                    flex-shrink: 0;
+                    margin-left:5px;
+                }
+                .open{
+                    color: #45AC3A;
+                }
+                .dicstatus{
+                    margin-left:4px;
+                }
+                .list-name{
+                    flex:1;
+                    &.list-status{
+                        color:#ccc;
+                    }
+                } 
+            }
+        }
+    }
+    .rightcontent{
+        flex:1;
+        border-radius: 4px;
+        min-width: 660px;
+        .flexcolumn;
+        .child-top{
+            line-height: 30px;
+            margin-bottom:8px;
+            background: #fff;
+            border-radius: 4px;
+            padding:15px 20px ;
+            .primarybtn{
+                width:94px;
+                .el-icon-plus{
+                    margin-right:3px;
+                }
+            }
+        }
+        /deep/.el-col{
+            height:100%;
+        }
+        .dichover{
+            .dicrow:hover{
+                background: @f5Color;
+                .my-handler{
+                    background:url(~@_/assets/img/system/drag.png) no-repeat center center;
+                    background-size:24px 24px ; 
+                    &:hover{
+                        background:url(~@_/assets/img/system/dragactive.png) no-repeat center center !important;
+                    }
+                    &:active{
+                        background:url(~@_/assets/img/system/dragactive.png) no-repeat center center;
+                    }
+                }
+            }
+        }
+        .dicrow{
+            .flexbox;
+            min-height: 50px;
+            color:#666;
+            word-break: break-all;
+            word-wrap: break-word;
+            line-height: 20px;
+            border-bottom:1px solid #F3F3F3;
+            &>span{
+                padding:15px 5px;
+            }
+            .dic-drag{
+                padding:0;
+                .flexbox;
+                width: 63px;
+                padding-left:11px;
+                flex-shrink: 0;
+            }
+            .my-handler{
+                text-align: center;
+                cursor: pointer;
+                outline: none;
+                width:50px;
+                height:50px;
+            }
+            .dic-index{
+                width:100px;
+            }
+            .dic-status{
+              width: 60px;
+            }
+            .dic-name{
+                /* width:20%; */
+                flex:1;
+                min-width:100px;
+            }
+            .dic-val,.dic-code{
+                width:15%;
+            }
+            .statusable{
+                color:#72B56B;
+            }
+        }
+        .dicitem{
+            .dic-index{
+                color:#666;
+            }
+        }
+        .listheader{
+            background: #F6F6F6;
+            border-radius:4px 4px 0px 0px;
+            height:50px;
+            line-height: 22px;
+            color: #333;
+            font-weight: 600;
+        }
+        .blue-background-class{
+            background: #f9f9f9 !important;
+            box-shadow: 0 3px 6px rgba(148,148,178,0.16);
+            .my-handler{
+                background:url(~@_/assets/img/system/drag.png) no-repeat center center;
+                background-size:24px 24px ; 
+                &:hover{
+                    background:url(~@_/assets/img/system/dragactive.png) no-repeat center center !important;
+                }
+                &:active{
+                    background:url(~@_/assets/img/system/dragactive.png) no-repeat center center;
+                }
+            }
+        }
+        .nodata{
+            color:#999;
+            text-align: center;
+            padding: 50px 0;
+        }
+    }
+    .dragsort{
+        position: fixed;
+        color: #fff;
+        font-size: 12px;
+        display: inline-block;
+        width: 90px;
+        height: 40px;
+        line-height: 38px;
+        text-align: center;
+        background:url(~@_/assets/img/system/dragtip.png) no-repeat center center;
+        background-size: 90px 40px;
+    }
+}
+@media screen and (max-width: 1560px) {
+    .dic-opera{
+        min-width:172px;
+    }
+}
+@media screen and (min-width: 1561px) {
+    .dic-opera{
+        min-width:200px;
+    }
+    .dic-code{
+        flex:1;
+    }
+}

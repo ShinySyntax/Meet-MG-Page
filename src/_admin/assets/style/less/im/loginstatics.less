@@ -1,0 +1,193 @@
+.container{
+    .totalcount{
+        font-size:12px;
+        color:#666;
+        padding-left:5px;
+        span{
+            color:@buttonColor;
+        }
+    }
+    .user-col{
+        .flexbox;
+        height:64px;
+        padding:0 0.5208vw 0 0;
+        &.active{
+            background:linear-gradient(224deg,rgba(68,186,248,1) 0%,rgba(53,150,252,1) 100%);
+            box-shadow:0px 0px 16px rgba(162,193,233,0.56);
+            .col-center{
+                .user-nick,.user-totalcount{
+                    color:#666;
+                    color:#fff;
+                 }
+             }
+        }
+        .left-avatar{
+            padding:10px 0.5208vw;
+            flex-shrink: 0;
+        }
+        .login-avatar{
+            width:44px;
+            height:44px;
+        }
+        .error-img{
+            width:100%;
+        }
+        .col-center{
+           flex:1; 
+            .user-nick{
+               font-size:12px;
+               color:#666;
+               line-height: 17px;
+            }
+            .user-totalcount{
+                line-height: 22px;
+                margin-top:2px;
+                font-weight: 600;
+            }
+        }
+        .righticon{
+            height: 100%;
+            padding-top:22px;
+        }
+        .updownicon{
+            width:20px;
+            flex-shrink: 0;
+            margin:0 0.5208vw;
+        }
+        .downicon{
+            transform: rotate(180deg);
+        }
+    }
+    .timecontent{
+        height:332px;
+        background:#fff;
+        border-radius:4px;
+        padding: 0 1.9271vw;
+        margin-bottom:12px;
+        .ytitle{
+            font-size:12px;
+            color:#CECECE;
+            line-height: 17px;
+            padding: 13px 0 3px;
+        }
+        .xtitle{
+            width: 30px;
+            align-self: flex-end;
+            padding-bottom: 40px;
+            color: #CECECE;
+            font-size: 12px;
+            padding-left: 3px;
+        }
+        .timelist{
+            display:flex;
+            height: calc(100% - 34px);
+            .time-col{
+                width:4.16%;
+                height: 100%;
+                position: relative;
+                &:nth-child(2n){
+                    .count{
+                        border-left: 1px solid transparent;
+                    }
+                    .time{
+                        opacity: 0;
+                    }
+                }
+                .time{
+                    font-size:12px;
+                    color:#666;
+                    line-height: 17px;
+                    position: absolute;
+                    left: -10px;
+                    bottom: 26px;
+                }
+                .count{
+                    border-left: 1px solid #EFF7FF;
+                    border-bottom: 1px solid #EFF7FF;
+                    height: calc(100% - 47px);
+                    width:100%;
+                    display: flex;
+                    flex-flow: column-reverse;
+                    text-align: center;
+                    &:hover{
+                        .columnar{
+                            box-shadow:0px 0px 10px rgba(143,188,245,1);
+                        }
+                        .curcount{
+                            color:@buttonColor;
+                        }
+                    }
+                }
+                .columnar{
+                    display: inline-block;
+                    width:100%;
+                    background:linear-gradient(222deg,rgba(68,186,248,1) 0%,rgba(53,150,252,1) 100%);
+                }
+                .curcount{
+                    font-size:12px;
+                    color:#666;
+                    line-height: 17px;
+                    margin-bottom:4px;
+                }
+            }
+        }
+    }
+    .timeloginlist{
+        position: fixed;
+        left:0;
+        padding:18px 0;
+        max-height: 119px;
+        background:#DFEBFF;
+        border:1px solid #8EC5FF;
+        box-shadow:0px 0px 16px #A2C1E9;
+        border-radius:4px;
+        overflow: auto;
+        z-index: 199999;
+        .login-col{
+            line-height: 20px;
+            margin-bottom:12px;
+            white-space: nowrap;
+            &>span{
+                padding:0 22px;
+                font-weight: 600;
+                display: inline-block;
+                text-align: center;
+            }
+            .ip{
+                width:162px;
+            }
+            .city{
+                width:130px;
+            }
+            .devicetype{
+                width:100px;
+            }
+            &:last-child{
+                margin-bottom: 0;
+            }
+        }
+    }
+    .maincontent{
+        .definescroll;
+        ::-webkit-scrollbar-track-piece{
+            background-color:#DFEBFF;
+        }
+    }
+    /* IP维度 */
+    .ipmaincontent{
+        .seemore{
+            color:@buttonColor;
+            cursor: pointer;
+            margin-bottom:12px;
+            width:60px;
+        }
+        .user-seemore{
+            height:64px ;
+            line-height: 64px;
+        }
+    }
+    .user-rolename{
+        color:#999;
+        padding-left:6px;
+    }
+}

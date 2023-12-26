@@ -1,0 +1,145 @@
+.menulist{
+    .listheader{
+        background: #F6F6F6;
+        border-radius:4px 4px 0px 0px;
+        font-weight: 600;
+        .men-col-name{
+            padding-left:57px;
+        }
+    }
+    &>.menusitem{
+        position: relative;
+        color:#666;
+    }
+    .menusitem{
+        .men-col-name{
+            .flexbox;
+            .updown{
+                margin-left:5px;
+                cursor: pointer;
+                img{
+                    vertical-align: middle;
+                }
+            }
+        }
+        .itemicon{
+            display: inline-block;
+            width:24px;
+            height:24px;
+            flex-shrink: 0;
+            &.pageicon{
+                background: url(~@_/assets/img/system/pgdf.png) center center;
+                background-size:24px 24px ;
+            }
+            &.menuicon{
+                background: url(~@_/assets/img/system/mudf.png) center center;
+                background-size:24px 24px;
+            }
+        }
+    }
+    .my-handler{
+        width: 50px;
+        height: 50px;
+        line-height: 24px;
+        text-align: center;
+        cursor: pointer;
+        display: inline-block;
+        flex-shrink: 0;
+        outline: none;
+        position: absolute;
+        left:12px;
+        z-index: 10;
+    }
+    .menu-col{
+        .flexbox;
+        border-bottom: 1px solid #F3F3F3;
+        line-height:50px;
+        .men-col-name{
+            .overell;
+            flex:1;
+        }
+        .men-col-url{
+            .overell;
+            width:20%;
+            padding:0 10px;
+        }
+        .men-col-route{
+            width:15%;
+        }
+        .men-col-type,.men-col-status,.men-col-see{
+            width:10%;
+        }
+        .men-col-status{
+          text-align: center;
+        }
+        .men-col-oper{
+            width: 12.8542vw;
+            min-width: 190px;
+            flex-shrink: 0;
+        }
+    }
+    .childspadl{
+        margin-left:-24px;
+    }
+    .caret-right{
+        transform: rotate(-90deg);
+    }
+    .blue-background-class{
+        background: #f9f9f9 !important;
+        box-shadow: 0 3px 6px rgba(148,148,178,0.16);
+        .my-handler{
+            .dragbg;
+        }
+    }
+    .pagename:hover{
+        color:@dbColor;
+        cursor:pointer;
+    }
+}
+.dragbg{
+    background-size:24px 24px ;
+    &:hover, &:active{
+        background:url(~@_/assets/img/system/dragactive.png) no-repeat center center;
+    }
+}
+.menuhover{
+    .menusitem .menu-col:hover{
+        background: @f5Color;
+        .my-handler{
+            background:url(~@_/assets/img/system/drag.png) no-repeat center center;
+            .dragbg;
+        }
+        .pageicon{
+            background: url(~@_/assets/img/system/pgin.png) center center;
+            background-size:24px 24px ;
+        }
+        .menuicon{
+            background: url(~@_/assets/img/system/muin.png) center center;
+            background-size:24px 24px;
+        }
+        .men-col-name{
+            color:@dbColor;
+        }
+    }
+}
+.dragsort{
+    position: fixed;
+    color: #fff;
+    font-size: 12px;
+    display: inline-block;
+    width: 90px;
+    height: 40px;
+    line-height: 38px;
+    text-align: center;
+    background:url(~@_/assets/img/system/dragtip.png) no-repeat center center;
+    background-size: 90px 40px;
+    z-index: 60;
+}
+.visitcheck{
+    position: absolute;
+    width: 100px;
+    color: @dbColor;
+    line-height: 30px;
+    cursor: pointer;
+    right:-90px;
+}

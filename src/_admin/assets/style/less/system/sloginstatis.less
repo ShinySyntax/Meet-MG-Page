@@ -1,0 +1,78 @@
+.container{
+    .usermaincontent{
+        .nickrole{
+            min-width: 170px;
+            .user-role{
+                font-size:12px;
+                color:#666;
+                margin:0 5px;
+            }
+        }
+        .daylist{
+            margin-left:28px;
+            margin-bottom:12px;
+            .day-col{
+                width:114px;
+                height:64px;
+                text-align: center;
+                float:left;
+                margin-right:12px;
+                background: #fff;
+                border-radius: 4px;
+                flex-shrink: 0;
+                cursor: pointer;
+                &.active{
+                    background:linear-gradient(224deg,rgba(68,186,248,1) 0%,rgba(53,150,252,1) 100%);
+                    color:#fff;
+                    .daytime{
+                        color:#fff;
+                    }
+                }
+                &:hover{
+                    box-shadow:0px 0px 16px rgba(162,193,233,0.56);
+                }
+            }
+            .daytime{
+                color:#666;
+                font-size:12px;
+                padding:13px 0 3px;
+                line-height: 17px;
+            }
+            .logintime{
+                line-height: 20px;
+            }
+            .dayleft,.dayright{
+                width:34px;
+                height:64px;
+                float:left;
+                background: #fff;
+                line-height: 75px;
+                text-align: center;
+                cursor: pointer;
+            }
+            .dayleft{
+                margin-right:10px;
+            }
+            .dayright{
+                margin-left:10px;
+                &>img{
+                    transform: rotate(180deg);
+                }
+            }
+            .daywrapper{
+                float:left;
+                width:calc(100% - 88px);
+                height:64px;
+                overflow: hidden;
+            }
+            .scroll-content{
+                transition: all 0.3s;
+            }
+        }
+    }
+    .usertimecontent{
+        margin-left:28px;
+        width: 58.9583vw;
+        min-width: 1010px;
+    }
+}

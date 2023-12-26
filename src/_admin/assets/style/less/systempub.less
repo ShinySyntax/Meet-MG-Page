@@ -1,0 +1,87 @@
+.bodycontent{
+    background: @mainBg;
+    .main{
+        min-height:100vh;
+        display: flex;
+        .leftNav{
+            width:280px;
+            background: #fff;
+            box-shadow:3px 3px 6px rgba(157,157,157,0.16);
+            position: fixed;
+            top:0 ;
+            left: 0;
+            z-index: 20;
+            height:100vh;
+            .main-lefttop{
+                height:50px;
+                width:280px;
+                background: #00338B;
+                .flexbox;
+                justify-content: center;
+            }
+            .left-top-expand{
+                height: 43px;
+               .flexbox;
+                padding-left: 22px;
+                background: #fcfcfc;
+                border-bottom:1px solid #ECECEC;
+                span{
+                    font-size: 12px;
+                    color: #666;
+                    cursor: pointer;
+                    padding:0 10px;
+                }
+                span:active{
+                    color:#5592FB;
+                }
+            }
+        }
+        .content{
+            width: calc(100% - 24px);
+            padding-left:280px;
+            border-bottom:12px solid @mainBg;
+            margin:0 12px;
+            padding-top:102px;
+        }
+    }
+    .syselmenu {
+        border-right:0;
+        padding-top:7px;
+    }
+    .scrollbar{
+        height: calc(100% - 55px);
+        .el-scrollbar__wrap{
+            overflow-x: hidden;
+        }
+        .el-scrollbar__thumb{
+            display: none;
+        }
+        .scrollheight{
+            height:600px;
+        }
+    }
+    /deep/.syselmenu>.navMenu>.el-menu-item{
+        font-weight: 600;
+        &>.addpad{
+            color:#333;
+            .pageicon{
+                background:url(~@_/assets/img/system/spgdf.png) no-repeat left center;
+                background-size:24px 24px ;
+            }
+        }
+    }
+    /deep/.syselmenu>.navMenu>.el-submenu{
+        &>.el-submenu__title{
+            color: #333;
+            &>.addpad{
+                .menuicon{
+                    background:url(~@_/assets/img/system/smudf.png) no-repeat left center;
+                    background-size:24px 24px ;
+                }
+            }
+            &+.el-menu>.navMenu>.el-menu-item{
+                color:#333;
+            }
+        }
+    }
+}

@@ -1,0 +1,207 @@
+
+.nexauth{
+    padding-left:24px;
+}
+.container{
+    display:flex;
+    flex-direction: row;
+    background: @mainBg;
+    .leftcontent{
+        width: 19.7917vw;
+        min-width: 330px;
+        max-width: 380px;
+        background:#fff;
+        height: calc(100vh - 114px);
+        margin-right:12px;
+        border-radius: 4px;
+        .definescroll;
+        .searchtop{
+            .flexbox;
+            padding:15px 0;
+            margin:0 20px;
+            border-bottom:1px solid #F2F2F2;
+            .label{
+                flex-shrink: 0;
+                margin-right:8px;
+            }
+            /deep/.el-input{
+                flex:1;
+            }
+            /deep/.el-input__inner{
+                height:30px;
+                line-height: 30px;
+                border:1px solid #EEF0F3;
+            }
+            /deep/.el-input__icon {
+                line-height: 30px;
+            }
+            .primarybtn{
+                margin-left: 1.4583vw;
+            }
+        }
+        .list{
+            height: calc(100% - 60px);
+            overflow-y: auto;
+            padding:10px 13px;
+            color:#666;
+            .list-col{
+                .flexbox;
+                line-height: 20px;
+                border-radius: 20px;
+                padding:7px 20px;
+                .flexbox;
+                justify-content: space-between;
+                &:hover{
+                    background: #F8F8F8;
+                }
+                &.active{
+                    background: @f5Color;
+                    color:@buttonColor;
+                    .usercount:hover{
+                        text-decoration: underline;
+                    }
+                }
+                .list-oper{
+                    width: 78px;
+                    flex-shrink: 0;
+                    margin-left:5px;
+                }
+                .list-name{
+                    flex:1;
+                    word-break: break-all;
+                }
+                .roleid{
+                    font-size:12px;
+                    color:#999;
+                    padding-left:5px;
+                }
+                .list-status{
+                    color:#ccc;
+                    .roleid{
+                        color:#ccc; 
+                    }
+                }
+                .usercount{
+                    width: 4vw;
+                    flex-shrink: 0;
+                    cursor: pointer;
+                }
+                .col-status{
+                    margin-left:4px;
+                }
+            }
+        }
+    }
+    .rightcontent{
+        flex:1;
+        border-radius: 4px;
+        height: calc(100vh - 114px);
+        background:#EDEFF3;
+        .definescroll;
+        ::-webkit-scrollbar-track-piece{
+            background-color:#f2f2f2;
+        }
+        .authbody{
+            height: calc(100% - 66px);
+            overflow-y: auto;
+        }
+        .listbody{
+            display: flex;
+        }
+        .updown{
+            color:@buttonColor;
+            margin-left:24px;
+            cursor: pointer;
+            padding: 4px 0;
+            text-decoration: underline;
+        }
+        .tmheader{
+            height:58px;
+            line-height: 58px;
+            margin-bottom:8px;
+            background: #fff;
+            border-radius: 4px;
+            padding-left:20px;
+        }
+        .rolename{
+            color:@buttonColor;
+        }
+        .rolegrant{
+            float:right;
+            margin-right:20px;
+            color:@h8Color;
+            .primarybtn{
+                margin-left:34px;
+            }
+            
+        }
+        .authrow{
+            flex:1;
+            min-width: 330px;
+            margin-right: 0.625vw;
+            &:last-child{
+                margin-right:0;
+            }
+        }
+    }
+}
+.authcontent{
+    margin-bottom:8px;
+    background: #fff;
+    border-radius:4px;
+    padding:0 1.0417vw;
+    .updownicon{
+        width:24px;
+        height:24px;
+        background: url(~@_/assets/img/common/blueud.png) no-repeat;
+        &.caret-right{
+            transform: rotate(-90deg);
+        }
+    }
+    &>.authheader{
+        line-height: 38px;
+        position: relative;
+        border-bottom:1px solid #F2F2F2;
+        padding:0;
+        &+.roleItem{
+            padding-bottom:30px;
+        }
+    }
+    .tmcheckbox;
+    .operlist{
+        padding-left:24px;
+        position: relative;
+        &>div{
+            line-height: 24px;
+            padding:3px 0;
+            color:#666;
+        }
+        input[type='checkbox']{
+            border: 1px solid #44BAF8;
+            border-radius: 100%;
+        }
+        input[type='checkbox']:checked{
+            border: 0;
+        }
+        input[type=checkbox]:checked::before {
+            background:url(~@_/assets/img/system/radio.png) no-repeat center center;
+            background-size: 16px 16px;
+        }
+    }
+}
+.authheader{
+    line-height: 24px;
+    .flexbox;
+    padding:3px 0;
+    justify-content: space-between;
+    position: relative;
+    .count-num{
+        color:#9F9F9F;
+        margin-left:10px;
+        flex-shrink: 0;
+    }
+    i{
+        color:@buttonColor;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,71 @@
+.navMenu{
+    color:#666;
+    .arrow{
+        position: absolute;right:15px;font-size: 16px;
+    }
+    /deep/.el-submenu__title,/deep/.el-menu-item{
+        height: 34px;
+        line-height: 34px;
+        color: #666;
+        font-weight: 600;
+    }
+    /deep/.el-menu-item{
+        width:calc(100% - 15px);
+        border-radius:0px 17px 17px 0px;
+        color:#666;
+        font-weight: 500;
+    }
+    /deep/.el-menu-item:hover{
+        border-radius:0px 17px 17px 0px;
+    }
+    /deep/.el-menu-item.is-active{
+        /* background: @bgBlue;
+        color: @textBlue;
+        border-right:2px solid @textBlue; */
+        background:linear-gradient(119deg,rgba(68,186,248,1) 0%,rgba(53,150,252,1) 100%);
+        color:#fff !important;
+        border-radius:0px 17px 17px 0px;
+        .addpad{
+            color:#fff !important;
+        }
+    }
+    /deep/.is-active .menupar-active{
+        color: #4A87F1;
+    }
+    /deep/.is-active .el-menu{
+        background: #F9FAFB ;
+    }
+    /deep/.el-submenu__icon-arrow{
+        display: none;
+    }
+    /deep/.el-submenu.is-opened>.el-submenu__title>.addpad>.arrow{
+        transform: rotateZ(90deg);
+    }
+    /deep/.el-submenu.is-active  .menupar-active .arrow{
+        color: #4A87F1;
+    }
+    .addpad{
+       .flexbox;
+       margin-left:6px;
+    }
+    .menuicon,.pageicon{
+        width:24px;
+        height:24px;
+        flex-shrink: 0;
+        margin-right:4px;
+    }
+    /deep/.el-submenu.is-active  .menupar-active .menuicon{
+        background:url(~@_/assets/img/system/muin.png) no-repeat left center !important;
+    }
+    /deep/.el-menu-item.is-active .pageicon{
+        background:url(~@_/assets/img/system/pgactive.png) no-repeat left center !important;
+    }
+    .menuicon{
+        background:url(~@_/assets/img/system/mudf.png) no-repeat left center;
+        background-size:24px 24px ;
+    }
+    .pageicon{
+        background:url(~@_/assets/img/system/pgdf.png) no-repeat left center;
+        background-size:24px 24px ;
+    }
+}

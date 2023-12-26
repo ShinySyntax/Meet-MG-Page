@@ -1,0 +1,252 @@
+<template>
+    <div class="commonright container">
+        <!-- 筛选 -->
+        <div class="filter">
+            <div class="filter-item">
+                <label class="filter-label">类型</label>
+                <el-select v-model="filters.type" clearable>
+                    <el-option v-for="item in typeSelect" :key="item.id" :value="item.id" :label="item.label"></el-option>
+                </el-select>
+            </div>
+            <div class="filter-btn">
+                <button class="primarybtn search" @click="getData(1)">搜索</button>
+            </div>
+        </div>
+        <!-- 数据表格 -->
+        <div>
+            <el-table :data="data.list">
+                <el-table-column label="用户ID" width="200">
+                    <template slot-scope="scope">
+                        ID：{{ scope.row.uid }}<br />
+                        昵称：{{ scope.row.nick }}<br />
+                        手机号：{{ scope.row.phone }}<br />
+                    </template>
+                </el-table-column>
+                <el-table-column label="内容" :align="$protovar.align" width="100">
+                    <template slot-scope="scope">
+                        <p v-if="scope.row.desc != null && scope.row.desc != ''" style="color:firebrick">
+                            {{ scope.row.desc }}
+                        </p>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" prop="credentialImg" width="350" label="图片/视频" >
+                    <template slot-scope="scope">
+                        <div v-if="scope.row.filetype == 1">
+                            <el-popover placement="left" trigger="click" width="300"
+                                v-for="item in scope.row.imgsurl.split(',')" :key="item">
+                                <img :src=sentout(item) width="100%" />
+                                <img slot="reference" :src=sentout(item)
+                                    style="max-height: 70px;max-width: 70px; padding: 5px" />
+                            </el-popover>
+
+                        </div>
+                        <div v-if="scope.row.filetype == 2">
+                            <el-popover placement="left" trigger="click" width="300">
+                                <video :src="scope.row.videourl" width="100%" autoplay="ture" controls="ture" loop="ture"
+                                    muted="false" />
+                                <video slot="reference" :src="scope.row.videourl"
+                                    style="max-height: 70px;max-width: 70px; padding: 5px" />
+                            </el-popover>
+
+                        </div>
+
+                    </template>
+                </el-table-column>
+
+                
+                <el-table-column label="状态" :align="$protovar.align" width="150">
+                    <template slot-scope="scope">
+                {{ scope.row.ispublic == 1 ? '公开' : scope.row.ispublic == 2 ? '不公开' : "异常" }}
+                        
+                    </template>
+                </el-table-column> 
+                <el-table-column label="时间" :align="$protovar.align" width="200">
+                    <template slot-scope="scope">
+                        {{ scope.row.createtime }}
+                        
+                    </template>
+                </el-table-column> 
+                <el-table-column label="操作" :align="$protovar.align" width="300">
+                    <template slot-scope="scope">
+                        <button class="primarybtn search" @click="delmid(scope.row.id)">
+                            {{ scope.row.desc == null && scope.row.filetype == null ? '空' : '删除' }}
+                        </button>
+
+                        <button v-if="scope.row.isvalidate==0"  class="primarybtn search" @click="shenhetongguo(scope.row)">
+                            审核通过
+                        </button>
+
+                    </template>
+                </el-table-column>
+
+            </el-table>
+        </div>
+        <!-- 分页 -->
+        <div class="pagecontainer" v-show="data.totalRow > 0">
+            <el-pagination layout="total,prev, pager, next,sizes,jumper" background :page-size="data.pageSize"
+                :page-sizes="data.pagesizes" :total="data.totalRow" :current-page="data.pageNumber"
+                @current-change="handleCurrentChange" @size-change="handleSizeChange">
+            </el-pagination>
+        </div>
+
+
+    </div>
+</template>
+<script>
+import {report, moments, msgTips } from '@_/axios/path';
+import {resUrl} from "../../utils/common";
+export default {
+    data() {
+        return {
+            
+            typeSelect: [{ id: 1, label: '公开' }, { id: 2, label: '不公开' }],
+            filters: {
+                searchkey: '',
+                walletid: '',
+                type: ''
+            },
+            data: {//数据表格
+                pageNumber: 1,
+                pageSize: 10,
+                totalRow: 0,//总条数
+                loading: false,//表单loading
+                list: [],//列表
+                pagesizes: [10, 20, 30, 40],
+                vars: null,
+            },
+            report: {
+                pageNumber: 1,
+                pageSize: 10,
+                totalRow: 0,//总条数
+                list: [],
+                loading: false,
+                status: '',
+                type: '',
+            }
+        }
+    },
+    mounted() {
+        this.curroute = this.$route.path;
+        this.filters.searchkey = this.$route.query.uid || '';
+        this.getData();
+    },
+    watch: {
+        '$route'(to, from) {
+            if (to.path == this.curroute) {
+                let query = to.query;
+                if (query.uid) {
+                    Object.assign(this.$data, this.$options.data());
+                    this.filters.searchkey = query.uid || '';
+                    this.curroute = this.$route.path;
+                    this.getData();
+                    return;
+                }
+                if (this.$protovar.routehasopen != -1 && !query.random) {
+                    return;
+                }
+                Object.assign(this.$data, this.$options.data());
+                this.curroute = this.$route.path;
+                this.getData();
+            }
+        }
+    },
+    //封号解封
+    methods: {
+        sentout(id) {
+            return resUrl(id);
+        },
+
+        // this.$refs.form.validate(async (valid) => {
+
+        closure(id, status) {
+            let closures = { id, status };
+            report.closure(closures).then(res => {
+                if (res.ok == true) {
+                    this.getData();
+                } else {
+                    msgTips(res.msg);
+                }
+            }
+            )
+        },
+   
+        delmid(id) {
+            console.log(id);
+            let mid = { id };
+            console.log(id);
+            report.delmid(mid).then(res => {
+                console.log(res);
+                console.log(res.data);
+                if (res.ok == true) {
+                    this.getData();
+                } else {
+                    msgTips(res.msg);
+                }
+            }
+            )
+        },
+        /* 用户账户 */
+        getData(item) {
+            if (item) {
+                this.data.pageNumber = item;
+            }
+            this.data.loading = true;
+            let { pageNumber, pageSize } = this.data;
+            let ptdata = { ...this.filters, pageNumber, pageSize };
+            moments.openlist(ptdata).then(res => {
+                if (res.ok) {
+                    let data = res.data;
+                    if (data) {
+                        this.data.totalRow = data.totalRow;
+                        this.data.list = data.list;
+                    }
+                } else {
+                    msgTips(res);
+                }
+                this.data.loading = false;
+            })
+        },
+        /**
+        审核通过
+        */
+        shenhetongguo(item) {
+            this.data.loading = true;
+            let ptdata = {id:item.id}
+            moments.shenhetongguo(ptdata).then(res => {
+                if (res.ok) {
+                    this.getData();
+                } else {
+                    msgTips(res);
+                }
+                this.data.loading = false;
+            })
+            
+        },
+        /* 切换分页 */
+        handleCurrentChange(val) {
+            this.data.pageNumber = val;
+            this.getData();
+        },
+        /* 调整每页显示条数 */
+        handleSizeChange(val) {
+            this.data.pageNumber = 1;
+            this.data.pageSize = val;
+            this.getData();
+        },
+
+        /* 切换分页 */
+        handleCurrentReport(val) {
+            this.report.pageNumber = val;
+            this.getreportlist();
+        },
+        /* 调整每页显示条数 */
+        handleSizeReport(val) {
+            this.report.pageNumber = 1;
+            this.report.pageSize = val;
+            this.getreportlist();
+        },
+
+    },
+}
+</script>
+<style scoped></style>

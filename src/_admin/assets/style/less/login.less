@@ -1,0 +1,119 @@
+.content{
+    width:100%;
+    height:100%;
+    background:linear-gradient(45deg,#3A7BE9 0%,#2188F3 100%) ;
+    position: relative;
+    .flexbox;
+    justify-content: center;
+    overflow: hidden;
+    .logo{
+        width:138px;
+        position: absolute;
+        top:40px;
+        left:60px;
+        z-index: 2;
+    }
+    .contentbg{
+        width:100%;
+        position: absolute;
+        left:0;
+        top:0;
+        z-index:1;
+    }
+    .pwd-content{
+        width:280px;
+        position: relative;
+        .pwdicon{
+            padding:12px;
+            position: absolute;
+            right:14px;
+            bottom: 8px;
+            cursor: pointer;
+            background: url(~@_/assets/img/login/pwdh.png) no-repeat right  center;
+            background-size:24px 24px;
+            &.showicon{
+                background: url(~@_/assets/img/login/pwds.png) no-repeat right center;
+            }
+        }
+    }
+    .maincontent{
+        width: 53.2292vw;
+        height: 59.1249vh;
+        min-width:800px;
+        min-height: 350px;
+        background: #fff;
+        border-radius:24px;
+        z-index: 6;
+        .flexbox;
+        .left{
+            width:50%;
+            .flexbox;
+            justify-content: center;
+            .left-img{
+                width: 16.9271vw;
+                min-width: 280px;
+            }
+        }
+        .right{
+            width:50%;
+            padding-left: 5.5729vw;
+            .title{
+                font-size:30px;
+                color:#3596FC;
+                line-height: 1;
+            }
+            .loginform{
+                input{
+                    width:280px;
+                    height:40px;
+                    border:1px solid #3596FC;
+                    color:#3596FC;
+                    border-radius: 39px;
+                    margin-top: 4.2689vh;
+                    padding-left:40px;
+                }
+                .username:focus,.username.focus{
+                    background: url(~@_/assets/img/login/user.png) no-repeat 18px center;
+                    background-size:19px 19px;
+                }
+                .username{
+                    background: url(~@_/assets/img/login/userc.png) no-repeat 18px center;
+                    background-size:19px 19px;
+                }
+                .password:focus,.password.focus{
+                    background: url(~@_/assets/img/login/pwd.png) no-repeat 18px center;
+                }
+                .password{
+                    background: url(~@_/assets/img/login/pwdc.png) no-repeat 18px center;
+                    background-size:19px 20px;
+                }
+                .error{
+                    height:40px;
+                    font-size:12px;
+                    color:#ff6363;
+                    line-height: 24px;
+                    .errorsh{
+                        display: flex;
+                    }
+                    .erroricon{
+                        width:24px;
+                        height:24px;
+                        margin-right:2px;
+                    }
+                }
+                .loginbtn{
+                    width: 136px;
+                    height: 40px;
+                    line-height: 1;
+                    border-radius: 39px;
+                    span{
+                        padding:0 36px;
+                    }
+                    img{
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+    }
+}

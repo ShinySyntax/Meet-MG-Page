@@ -1,0 +1,34 @@
+.container{
+    .imgcol{
+        width:50px;
+        height:50px;
+        /deep/.el-image__error{
+            width:50px;
+            height:50px;
+            font-size:12px; 
+        }
+    }
+}
+.sdialogform{
+    .logoimg{
+        display: inline-block;
+        width:50px;
+        height:50px;
+        margin-right: 20px;
+    }
+    .fileimg{
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        /* vertical-align: 20px; */
+        input{
+            position: absolute;
+            z-index: 2;
+            left:0;
+            top:0;
+            bottom:0;
+            right:0;
+            opacity: 0;
+        }
+    }
+}

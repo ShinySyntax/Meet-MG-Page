@@ -1,0 +1,360 @@
+
+.contentpad /deep/ ul,ol,li{
+  list-style: decimal !important;
+  list-style-type: decimal !important;
+}
+.contentpad{
+    .user{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .userInfo{
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+        span{
+            display: inline-block;
+        }
+        .userInfo-nick{
+            width: 70px;
+            .overell;
+        }
+    }
+    .imgcol{
+        width: 50px;
+        height: 50px;
+    }
+    .casecover{
+        width: 92px;
+        height: 70px;
+    }
+    .statuIcon{
+        width: 8px;
+        height: 8px;
+        border-radius: 50px;
+        display: inline-block;
+        margin-right: 5px;
+    }
+    .statuGreen{
+        background: #72B56B;
+    }
+    .statuRed{
+        background: #F96868;
+    }
+    .statuyellow{
+      background: #FFB011;
+    }
+    .statublue{
+      background: #468AFF;
+    }
+}
+.error-img{
+  width: 100%;
+  height: 100%;
+}
+
+.flex_column_center{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start
+}
+
+.color_3A7BE9{
+  color: #3A7BE9;
+}
+  .button {
+    border-radius: 4px;
+    background-color: #3A7BE9;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 14px;
+    padding: 2px;
+    width: 100px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .button span {
+    cursor: pointer;
+    transition: 0.5s;
+  }
+
+  .button span:after {
+    content: '»';
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  .button:hover span {
+    padding-right: 25px;
+  }
+
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+
+.groupChat-dialog{
+  /deep/.el-dialog__body, /deep/.el-dialog__header{
+    padding: 0 25px;
+  }
+  .groupChatBox{
+    p{
+      height: 54px;
+      line-height: 54px;
+    }
+    textarea{
+      width: 503px;
+      height: 214px;
+    }
+    .operator{
+      height: 30px;
+      line-height: 30px;
+    }
+  }
+  .tmdialog-footer{
+    height: 90px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.table-header{
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #F6F6F6;
+  p{
+    width: 320px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  & :first-child {
+    padding-left: 15px;
+  }
+}
+.forbiddenList-dialog{
+  /deep/.el-dialog__body, /deep/.el-dialog__header{
+    padding: 0 25px;
+  }
+  .forbiddenListBox{
+    padding-bottom: 30px;
+    .forbiddenList-title{
+      height: 60px;
+      line-height: 60px;
+    }
+    .forbiddenList-header{
+      height: 77px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+      .el-image{
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+      }
+      .forbiddenList-header-right{
+        font-size: 14px;
+        color: #333;
+      }
+      .refresh{
+        position: absolute;
+        right: 40px;
+        .flexbox;
+        margin-left:20px;
+        cursor: pointer;
+        .tmopera;
+        .rotate{
+            animation:refreshrote 2s linear infinite;
+        }
+      }
+
+    }
+    .forbiddenList-table{
+      height: 450px;
+      overflow-y:auto;
+      overflow-x:hidden;
+      .forbiddenList-li{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 1000px;
+        border-bottom: solid 1px #F6F6F6;
+        height: 90px;
+        .table-col{
+          width: 320px;
+        }
+      }
+      .user{
+          display: flex;
+          justify-content: flex-start;
+      }
+      .userInfo{
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+        span{
+            display: inline-block;
+        }
+        .userInfo-nick{
+            width: 70px;
+            .overell;
+        }
+      }
+      .imgcol{
+          width: 50px;
+          height: 50px;
+      }
+    }
+  }
+}
+.commonright .contentpad{
+  padding: 0;
+}
+.complaintShowBox{
+  padding-bottom: 30px;
+  .complaintShow-title{
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #F3F3F3;
+  }
+  .complaintShow-header{
+    height: 77px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    .complaintShow-left{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      .header-box:last-child{
+        margin-left: 64px;
+      }
+    }
+    .header-box{
+      display: flex;
+    }
+    .el-image{
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+    .complaintShow-header-right{
+      font-size: 14px;
+      color: #333;
+    }
+    .refresh{
+      position: absolute;
+      right: 30px;
+      top: 20px;
+      .flexbox;
+      margin-left:20px;
+      cursor: pointer;
+      .tmopera;
+      .rotate{
+          animation:refreshrote 2s linear infinite;
+      }
+    }
+    .filter{
+      margin-right: 97px;
+    }
+  }
+  .complaintShow-table{
+    .user{
+      display: flex;
+      justify-content: flex-start;
+    }
+    .userInfo{
+      display: flex;
+      flex-direction: column;
+      margin-left: 10px;
+      span{
+          display: inline-block;
+      }
+      .userInfo-nick{
+          width: 70px;
+          .overell;
+      }
+    }
+    .imgcol{
+        width: 50px;
+        height: 50px;
+    }
+    .devicetype_Img{
+        width:16px;
+        height:16px;
+        float:left;
+        /deep/.el-image__error{
+            font-size:12px;
+            line-height: 1;
+            text-align:center;
+        }
+    }
+    .devicetype p{
+      display: flex;
+      align-items: center;
+    }
+    .reason-box{
+      position: relative;
+      .reason{
+        display: -webkit-box;
+        -webkit-box-orient: vertical; -webkit-line-clamp: 3;
+        overflow: hidden;
+      }
+
+    }
+  }
+  .allReason{
+    width: 454px;
+    height: auto;
+    padding: 19px 17px;
+    position: absolute;
+    background: #fff;
+  }
+}
+.confirmReportdealBox{
+  text-align: center;
+  padding: 73px 0 53px;
+}
+.tmdialog-footer{
+  text-align: center;
+  padding-bottom: 60px;
+}
+@keyframes refreshrote {
+    0% {
+        box-shadow:0px 0px 10px #fff;
+    }
+    50% {
+        transform:rotate(180deg);
+    }
+    100% {
+        transform:rotate(360deg);
+    }
+}
+.complaintShow-dialog{
+  /deep/.el-dialog__body, /deep/.el-dialog__header{
+    padding: 0 25px;
+  }
+  /deep/.el-dialog{
+    margin-top: 12vh !important;
+  }
+}
+.stateMarked{
+  color: #C9C9C9;
+}
+.stateUnmark{
+  color: #3A7BE9;
+}
+.userdialog /deep/ .el-dialog__body{
+  padding: 0 !important;
+}

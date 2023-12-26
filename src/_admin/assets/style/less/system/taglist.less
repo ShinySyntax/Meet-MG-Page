@@ -1,0 +1,213 @@
+.tagbody{
+    white-space: nowrap;
+    background: #fff;
+    padding-top:7px;
+    border-bottom:1px solid #EDEFF3;
+    &.tagbg{
+        background: @mainBg;
+    }
+    .tagmain{
+        overflow:hidden;
+        height:40px;
+    }
+    .scrolltag{
+        white-space: nowrap;
+    }
+    .tagquickin{
+        .popper__arrow{
+            left:44px;
+        }
+    }
+    .el-dropdown-link{
+        box-shadow:2px 0px 3px rgba(152,152,152,0.16);
+        width:34px;
+        height:34px;
+        background:#fcfcfc;
+        border-radius:4px;
+        justify-content: center;
+        outline: none;
+        cursor: pointer;
+        color:#999;
+        .flexbox;
+        flex-shrink: 0;
+    }
+    .dropdown-line{
+        margin:0 10px;
+        height:1px;
+        background-color: #F2F2F2;
+    }
+    .tag{
+        color: #a2a2a2;
+        display:inline-block;
+        cursor: pointer;
+        background: #fff;
+        padding:0 10px;
+        vertical-align:top;
+        .span-col{
+            .flexbox;
+            height:40px;
+            padding-left:5px;
+        }
+        .tm-icon-refresh{
+            display: none;
+            width:18px;
+            height:18px;
+            margin-right:5px;
+            border-radius: 100%;
+            background:url(~@_/assets/img/common/refresh.png) no-repeat center center;
+            &:hover{
+                background:url(~@_/assets/img/common/refreshover.png) no-repeat center center;
+            }
+        }
+        .tm-icon-close{
+            width:18px;
+            height:18px;
+            margin-left:31px;
+            position: relative;
+            background:url(~@_/assets/img/common/closedf.png) no-repeat left center;
+            &:hover{
+                background:url(~@_/assets/img/common/closein.png) no-repeat left center;
+            }
+            &:after{
+                position: absolute;
+                content: '';
+                width: 1px;
+                height: 14px;
+                right: -5px;
+                background: #ECECEC;
+                z-index: 2;
+                top: 2px;
+            }
+        }
+        &.active{
+            box-shadow: 0 -10px 0 #EDEFF3 inset;
+            position: relative;
+            &:before{
+                position: absolute;
+                content:'';
+                background: #fff;
+                width:10px;
+                height:10px;
+                bottom:0px;
+                left:0;
+                border-radius: 0 0 10px 0;
+            }
+            &::after{
+                position: absolute;
+                content:'';
+                background: #fff;
+                width:10px;
+                height:10px;
+                bottom:0px;
+                right:0;
+                border-radius: 0 0 0 10px;
+            }
+            .tm-icon-refresh{
+                display: block;
+            }
+            .tm-icon-close{
+                margin-right:5px;
+                margin-left:7px;
+            }
+            .span-col{
+                color:@hoverBlue;
+                background: #EDEFF3;
+                position: relative;
+                border-radius: 10px;
+            }
+        }
+        &:hover{
+            color: @textBlue;
+        }
+        &:last-child{
+            .tm-icon-close:after{
+                width:0;
+            }
+        }
+    }
+    .arrow{
+        width:34px;
+        height:34px;
+        box-shadow:2px 0px 3px rgba(152,152,152,0.16);
+        .flexbox;
+        cursor: pointer;
+        flex-shrink: 0;
+        z-index: 5;
+        margin-left:10px;
+        &.arrow-left{
+            background:#fcfcfc url(~@_/assets/img/common/scroll.png) no-repeat center center;
+            background-size: 24px 24px;
+            &:active{
+                background:#fcfcfc url(~@_/assets/img/common/scrollactive.png) no-repeat center center;
+            }
+        }
+        &.arrow-right{
+            transform: rotate(180deg);
+        }
+    }
+}
+.el-dropdown-menu{
+    .closecur{
+        background: url(~@_/assets/img/common/closecur.png) no-repeat;
+        &:active,&:hover{
+            background: #ECF3FF url(~@_/assets/img/common/closecurin.png) no-repeat;
+        }
+    }
+    .collectcur{
+        background: url(~@_/assets/img/common/collectdf.png) no-repeat;
+        &:active,&:hover{
+            background: #ECF3FF url(~@_/assets/img/common/collectin.png) no-repeat;
+        }
+    }
+    .closeleft{
+        background: url(~@_/assets/img/common/left.png) no-repeat;
+         &:active,&:hover{
+            background: #ECF3FF url(~@_/assets/img/common/leftin.png) no-repeat;
+        }
+    }
+    .closeright{
+        background: url(~@_/assets/img/common/right.png) no-repeat;
+         &:active,&:hover{
+            background: #ECF3FF url(~@_/assets/img/common/rightin.png) no-repeat;
+        }
+    }
+    .closeoth{
+        background: url(~@_/assets/img/common/closeoth.png) no-repeat;
+         &:active,&:hover{
+            background: #ECF3FF url(~@_/assets/img/common/closeothin.png) no-repeat;
+        }
+    }
+    .closeall{
+        background: url(~@_/assets/img/common/closeall.png) no-repeat;
+        &:active,&:hover{
+            background: #ECF3FF url(~@_/assets/img/common/closeallin.png) no-repeat;
+        }
+    }
+    .refreshcur{
+        background: url(~@_/assets/img/common/refreshdf.png) no-repeat;
+        &:active,&:hover{
+           background: #ECF3FF url(~@_/assets/img/common/refreshin.png) no-repeat;
+       } 
+    }
+    .el-dropdown-menu__item{
+        /* background-size: 24px 24px; */
+        padding: 0 18px 0 46px;
+        line-height: 42px;
+        color: #666;
+        background-position: 18px center;
+        &:active,&:hover{
+            background-position: 18px center;
+            color: #3E7DE8;
+        }
+    }
+}
+.tmtagdrop{
+    padding:0;
+    li{
+        line-height: 42px;
+        &:hover{
+            background: @f5Color;
+            color:@hoverBlue;
+        }
+    }
+}
