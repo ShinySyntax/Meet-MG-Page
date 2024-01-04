@@ -1179,6 +1179,9 @@ const UID={
     addopen:(data)=>{
         return fetchGet("/UID/addopen",data);
     },
+    modifyUserTiono:(data)=> {
+        return fetchGet("/UID/modifyUserTiono",data);
+    }
 }
 const litemall={
     list:(data)=>{

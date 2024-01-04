@@ -93,19 +93,19 @@
                 <el-table-column label="地区/IP" width="280" :align="$protovar.align" >
                     <template slot-scope="scope" >
                     <span v-auth="'showip'">
-<span class="color_666"  v-show="scope.row.region" >{{
-                scope.row.region
-                }}</span><br/>
-                        <a class="a_ip" v-if="scope.row.ip"
-                           :href="`https://www.baidu.com/s?wd=${scope.row.ip}&from=t-io`"
-                           target="_blank">{{ scope.row.ip }}
-                        </a>
-                        <span v-else>未知</span><br/>
-                        <button class="primarybtn search" @click="setIp(scope.row.ip,scope.row.banid)">
-                            {{
-                            scope.row.isBan == '1' ? '解封' : '封禁'
-                            }}
-                        </button>
+                    <span class="color_666"  v-show="scope.row.region" >{{
+                        scope.row.region
+                    }}</span><br/>
+                    <a class="a_ip" v-if="scope.row.ip"
+                        :href="`https://www.baidu.com/s?wd=${scope.row.ip}&from=t-io`"
+                        target="_blank">{{ scope.row.ip }}
+                    </a>
+                    <span v-else>未知</span><br/>
+                    <button class="primarybtn search" @click="setIp(scope.row.ip,scope.row.banid)">
+                        {{
+                        scope.row.isBan == '1' ? '解封' : '封禁'
+                        }}
+                    </button>
                     </span>
             
                     </template>
@@ -165,6 +165,7 @@
                                     scope.row.vipid == 3 ? '高级会员' : scope.row.vipid == 4 ? '超级会员' : '不是会员'
                                 }}</span>
                             <span class="tmopera" @click="resetPwd(scope.row)" v-auth="'reset'">重置密码</span>
+                            <span class="tmopera" @click="modifyID(scope.row)" v-auth="'reset'">修改ID</span>
                         </div>
                     </template>
                 </el-table-column>
@@ -281,6 +282,7 @@
                                     scope.row.vipid == 3 ? '高级会员' : scope.row.vipid == 4 ? '超级会员' : '不是会员'
                                 }}</span>
                             <span class="tmopera" @click="resetPwd(scope.row)" v-auth="'reset'">重置密码</span>
+                            <span class="tmopera" @click="modifyID(scope.row)" v-auth="'reset'">修改ID</span>
                         </div>
                     </template>
                 </el-table-column>
@@ -518,7 +520,19 @@
                 </p>
             </div>
         </el-dialog>
-
+        <!-- 修改ID输入弹框 -->
+        <el-dialog :visible.sync="visible.modifyID" class="groupChat-dialog" width="553px">
+            <div class="groupChatBox">
+                <p>请输入新ID(8位)</p>
+                <textarea v-model="tiono"
+                          :placeholder="请输入8位新ID" maxlength="8"></textarea>
+                <p class="operator">操作人：{{ curruser && curruser.loginname }}</p>
+            </div>
+            <div class="tmdialog-footer">
+                <button class="primarybtn search" @click="visible.modifyID=false">取消</button>
+                <button class="primarybtn" @click="confirmModifyID()">确定</button>
+            </div>
+        </el-dialog>
     </div>
 </template>
 <script>
@@ -527,7 +541,7 @@ import {mapMutations} from "vuex";
 import {imuser, msgTips, successTips, mgrole} from "@_/axios/path";
 import $protovar from "quill";
 import {resUrl, btDate} from "@_/utils/common.js";
-import {IP, report} from "../../axios/path";
+import {IP, report, UID} from "../../axios/path";
 
 export default {
     data() {
@@ -542,6 +556,7 @@ export default {
             visible: {
                 userChatShow: false,
                 joinGroupShow: false,
+                modifyID: false,
             },
             inblack: {//封停/解封原因
                 reason: '',
@@ -620,7 +635,11 @@ export default {
             // 是否展示地区/IP
             showip: false,
             // 头像是否可以点击
-            avatarClickable: false
+            avatarClickable: false,
+            // 修改ID选中的item
+            modifyIDItem: null,
+            tiono: "",
+
         };
     },
     mounted() {
@@ -629,6 +648,9 @@ export default {
         this.judegeAvatarClickable();
     },
     watch: {
+        tiono (newValue, oldValue) {
+            this.tiono = newValue.replace(/[^\d]/g, "")
+        },
         $route(to, from) {
             if (to.path == this.curroute) {
                 if (this.$protovar.routehasopen != -1 && !to.query.random) {
@@ -641,6 +663,34 @@ export default {
         },
     },
     methods: {
+        // 修改ID
+        modifyID(item) {
+            this.tiono = "";
+            this.modifyIDItem = item;
+            this.visible.modifyID = true;
+        },
+        // 修改ID确认
+        confirmModifyID() {
+            if (this.tiono == "" || this.tiono == '') {
+                msgTips("请输入新ID");
+                return;
+            } else if (this.tiono.length !=8) {
+                msgTips("请输入8位ID")
+                return;
+            }
+            let psData = {tiono:this.tiono, uid:this.modifyIDItem.id}
+            UID.modifyUserTiono(psData).then((res) => {
+                if (res.ok == 1) {
+                    msgTips("修改成功");
+                    this.getData()
+                } else {
+                    msgTips(res.msg);
+                }
+                this.modifyIDItem = null;
+                this.visible.modifyID = false;
+            })
+        },
+
         // 取消全选
         allSelectCancelClick() {
             this.isSelectAll = false;
