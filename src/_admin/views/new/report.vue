@@ -379,7 +379,7 @@ export default {
             })
         },
         sentout(id) {
-            return id;
+            return resUrl(id);
         },
 
         closure(id, status,status2) {
