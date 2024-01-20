@@ -74,7 +74,7 @@
                         </div>
                     </template>
                 </el-table-column>
-                <el-table-column label="三方绑定" width="150" :align="$protovar.align">
+                <!-- <el-table-column label="三方绑定" width="150" :align="$protovar.align">
                     <template slot-scope="scope">
                         <div class="thirdTypeBox" v-if="scope.row.thirdtype">
                             <img v-for="(item, index) in scope.row.thirdtype" :key="index" :src="thirdArr[item].img"
@@ -82,7 +82,7 @@
                         </div>
                         <span v-else>暂无</span>
                     </template>
-                </el-table-column>
+                </el-table-column> -->
                 <el-table-column label="群组" width="150" :align="$protovar.align">
                     <template slot-scope="scope">
                         <span class="tmopera" @click="more(scope.row.id)"
@@ -166,6 +166,9 @@
                                 }}</span>
                             <span class="tmopera" @click="resetPwd(scope.row)" v-auth="'reset'">重置密码</span>
                             <span class="tmopera" @click="modifyID(scope.row)" v-auth="'reset'">修改ID</span>
+                            <span class="tmopera" @click="cancelkaopu(scope.row)" v-if="scope.row.iskaopu == 1" v-auth="'reset'">取消靠谱</span>
+                            <span class="tmopera" @click="addkaopu(scope.row)" v-else v-auth="'reset'">添加靠谱</span>
+                            <span class="tmopera" @click="cancelReservedNumber(scope.row)" v-if="scope.row.hasRareNumber == 1" v-auth="'reset'">取消靓号</span>
                         </div>
                     </template>
                 </el-table-column>
@@ -210,7 +213,7 @@
                         </div>
                     </template>
                 </el-table-column>
-                <el-table-column label="三方绑定" width="150" :align="$protovar.align">
+                <!-- <el-table-column label="三方绑定" width="150" :align="$protovar.align">
                     <template slot-scope="scope">
                         <div class="thirdTypeBox" v-if="scope.row.thirdtype">
                             <img v-for="(item, index) in scope.row.thirdtype" :key="index" :src="thirdArr[item].img"
@@ -218,7 +221,7 @@
                         </div>
                         <span v-else>暂无</span>
                     </template>
-                </el-table-column>
+                </el-table-column> -->
                 <el-table-column label="群组" width="150" :align="$protovar.align">
                     <template slot-scope="scope">
                         <span class="tmopera" @click="more(scope.row.id)"
@@ -283,6 +286,9 @@
                                 }}</span>
                             <span class="tmopera" @click="resetPwd(scope.row)" v-auth="'reset'">重置密码</span>
                             <span class="tmopera" @click="modifyID(scope.row)" v-auth="'reset'">修改ID</span>
+                            <span class="tmopera" @click="cancelkaopu(scope.row)" v-if="scope.row.iskaopu == 1" v-auth="'reset'">取消靠谱</span>
+                            <span class="tmopera" @click="addkaopu(scope.row)" v-else v-auth="'reset'">添加靠谱</span>
+                            <span class="tmopera" @click="cancelReservedNumber(scope.row)" v-if="scope.row.hasRareNumber == 1" v-auth="'reset'">取消靓号</span>
                         </div>
                     </template>
                 </el-table-column>
@@ -971,6 +977,44 @@ export default {
                 })
             });
             this.dialog4.visible = true;
+        },
+        /**添加靠谱 */
+        addkaopu(item) {
+            let ptdata = {uid: item.id};
+            // console.log(ptdata);
+            imuser.addKaopu(ptdata).then((res) => {
+                if (res.ok) {
+                    successTips("操作成功");
+                    this.getData();
+                } else {
+                    msgTips(res);
+                }
+            });
+        },
+        /**取消靠谱 */
+        cancelkaopu(item) {
+            let ptdata = {uid: item.id};
+            // console.log(ptdata);
+            imuser.cancelKaopu(ptdata).then((res) => {
+                if (res.ok) {
+                    successTips("操作成功");
+                    this.getData();
+                } else {
+                    msgTips(res);
+                }
+            });
+        },
+        /**取消靓号 */
+        cancelReservedNumber(item) {
+            let ptdata = {uid: item.id};
+            UID.cancalReserve(ptdata).then((res) => {
+                if (res.ok) {
+                    successTips("操作成功");
+                    this.getData();
+                } else {
+                    msgTips(res);
+                }
+            });
         }
     },
 };

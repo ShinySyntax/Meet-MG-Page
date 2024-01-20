@@ -626,6 +626,14 @@ const imuser={
     joinGroup:(data)=> {
         return fetchGet("/tiouser/joinGroup",data);
     },
+    /**设置靠谱标识 */
+    addKaopu:(data)=> {
+        return fetchGet("/kaopu/addkaopu",data);
+    },
+    /**取消靠谱标识 */
+    cancelKaopu:(data)=> {
+        return fetchGet("/kaopu/cancelkaopu",data);
+    },
 };
 /* 消息管理 */
 const imchat={
@@ -1181,6 +1189,10 @@ const UID={
     },
     modifyUserTiono:(data)=> {
         return fetchGet("/UID/modifyUserTiono",data);
+    },
+    /**取消用户靓号 */
+    cancalReserve:(data)=> {
+        return fetchPost("/UID/cancalReserve",data);
     }
 }
 const litemall={
@@ -1204,7 +1216,7 @@ const litemall={
     },
     newAdd:(data)=>{
         return fetchPost("/litemall/newAdd",data);
-    }
+    },
 }
 const html={
     html:(data)=>{
