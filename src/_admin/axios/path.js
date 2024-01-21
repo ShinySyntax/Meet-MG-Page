@@ -1172,6 +1172,7 @@ const UID={
     add:(data)=>{
         return fetchGet("/UID/add",data);
     },
+    /**删除分类 */
     delete:(data)=>{
         return fetchGet("/UID/delete",data);
     },
@@ -1193,6 +1194,10 @@ const UID={
     /**取消用户靓号 */
     cancalReserve:(data)=> {
         return fetchPost("/UID/cancalReserve",data);
+    },
+    /**根据id删除靓号 */
+    deleteReserveByid:(data)=> {
+        return fetchPost("/UID/deleteReserveByid",data);
     }
 }
 const litemall={

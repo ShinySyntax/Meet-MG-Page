@@ -48,6 +48,12 @@
                         <span>{{ scope.row.name}}</span>
                     </template>
                 </el-table-column>
+
+                <el-table-column label="操作" :align="$protovar.align">
+                    <template slot-scope="scope">
+                        <span v-show="scope.row.uid==null" class="tmopera" @click="del(scope.row.id)">删除</span>
+                    </template>
+                </el-table-column>
 <!--                <el-table-column label="金额" :align="$protovar.align">-->
 <!--                    <template slot-scope="scope">-->
 <!--                        <span>{{ scope.row.money }}</span>-->
@@ -110,6 +116,17 @@
                 <span style="float: left">号码:</span>
                 <el-input type="textarea" style="margin:auto;width:268px;" v-model="dialog.number" ></el-input>
             </div>
+            <div class="filter-item" style="width:268px;padding: 0 20px">
+                <label class="filter-label">分类</label>
+                <el-select v-model="dialog.categoryId" clearable>
+                    <el-option v-for="item in categoryList" :key="item.id" :value="item.id"
+                               :label="item.name"></el-option>
+                </el-select>
+            </div>
+            <div class="filter-item" style="width:268px;padding: 0 20px">
+                <label class="filter-label">金额（分）</label>
+                <el-input type="textarea" style="margin:auto;width:268px;" v-model="dialog.money" ></el-input>
+            </div>
             <div class="tmdialog-footer pb60">
                 <button class="primarybtn search" @click="hideDialog">
                     取消
@@ -145,6 +162,7 @@ export default {
             data: {
                 list: [],
                 list1: [],
+                categoryList: [],
                 //数据表格
                 pageNumber: 1,
                 pageSize: 10,
@@ -152,6 +170,7 @@ export default {
                 loading: false, //表单loading
                 pagesizes: [10, 20, 30, 40],
             },
+            
             dialog:{
                 visible:false,
                 visible2:false,
@@ -167,7 +186,9 @@ export default {
                 deleted:'',
                 type:'',
                 searchkey:'',
-                number:''
+                number:'',
+                money:0,
+                categoryId:''
             },
         };
     },
@@ -178,8 +199,20 @@ export default {
     },
     mounted() {
         this.getData();
+        this.getCategoryData();
     },
     methods: {
+        /**
+         * 获取分类列表
+         */
+         getCategoryData() {
+            UID.list().then((res) => {
+
+                if (res.ok) {
+                    this.categoryList = res.data.list;
+                }
+            });
+        },
         getUser(){
             let ptdata={searchkey:this.dialog.searchkey1};
             imuser.userList(ptdata).then((res) => {
@@ -218,9 +251,29 @@ export default {
             })
         },
         addopen(){
+            if (this.dialog.number == '') {
+                msgTips("请输入靓号");
+                return;
+            }
+            if (this.dialog.categoryId == '') {
+                msgTips("请选择分类");
+                return;
+            }
+            if (this.dialog.money == 0 || this.dialog.money == '') {
+                msgTips("请设置金额");
+                return;
+            }
+            for (var i = 0; i < this.data.categoryList.length; i++) {
+                if (this.data.categoryList[i].id == this.dialog.categoryId) {
+                    this.dialog.type = this.data.categoryList[i].type;
+                    break;
+                }
+            }
             let date={
                 number:this.dialog.number,
                 type:this.dialog.type,
+                money:this.dialog.money,
+                categoryid:this.dialog.categoryId
             }
             UID.addopen(date).then((res)=>{
                 if(res.ok){
@@ -262,7 +315,7 @@ export default {
         },
         del(id){
             let ids={id:id};
-            UID.delete(ids).then((res)=>{
+            UID.deleteReserveByid(ids).then((res)=>{
                 if(res.ok){
                     this.getData();
                 }else {
