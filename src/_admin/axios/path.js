@@ -1200,6 +1200,16 @@ const UID={
         return fetchPost("/UID/deleteReserveByid",data);
     }
 }
+const userloginwhteip = {
+    /**添加用户登录ip白名单 */
+    addWhiteIp:(data)=>{
+        return fetchPost("/whiteip/addWhiteIp",data);
+    },
+    /**取消用户登录ip白名单 */
+    cancelWhiteIp:(data)=>{
+        return fetchPost("/whiteip/cancelWhiteIp",data);
+    },
+}
 const litemall={
     list:(data)=>{
         return fetchPost("/litemall/list",data);
@@ -1331,5 +1341,6 @@ export {
     notice,
     IP,
     redModifyRules,
-    deal
+    deal,
+    userloginwhteip
 }

@@ -169,6 +169,8 @@
                             <span class="tmopera" @click="cancelkaopu(scope.row)" v-if="scope.row.iskaopu == 1" v-auth="'reset'">取消靠谱</span>
                             <span class="tmopera" @click="addkaopu(scope.row)" v-else v-auth="'reset'">添加靠谱</span>
                             <span class="tmopera" @click="cancelReservedNumber(scope.row)" v-if="scope.row.hasRareNumber == 1" v-auth="'reset'">取消靓号</span>
+                            <span class="tmopera" @click="cancelLoginWhiteip(scope.row)" v-if="scope.row.issetwhiteip == 1" v-auth="'reset'">取消登录ip白名单</span>
+                            <span class="tmopera" @click="addLoginWhiteip(scope.row)" v-else v-auth="'reset'">设置登录ip白名单</span>
                         </div>
                     </template>
                 </el-table-column>
@@ -289,6 +291,8 @@
                             <span class="tmopera" @click="cancelkaopu(scope.row)" v-if="scope.row.iskaopu == 1" v-auth="'reset'">取消靠谱</span>
                             <span class="tmopera" @click="addkaopu(scope.row)" v-else v-auth="'reset'">添加靠谱</span>
                             <span class="tmopera" @click="cancelReservedNumber(scope.row)" v-if="scope.row.hasRareNumber == 1" v-auth="'reset'">取消靓号</span>
+                            <span class="tmopera" @click="cancelLoginWhiteip(scope.row)" v-if="scope.row.issetwhiteip == 1" v-auth="'reset'">取消登录ip白名单</span>
+                            <span class="tmopera" @click="addLoginWhiteip(scope.row)" v-else v-auth="'reset'">设置登录ip白名单</span>
                         </div>
                     </template>
                 </el-table-column>
@@ -547,7 +551,7 @@ import {mapMutations} from "vuex";
 import {imuser, msgTips, successTips, mgrole} from "@_/axios/path";
 import $protovar from "quill";
 import {resUrl, btDate} from "@_/utils/common.js";
-import {IP, report, UID} from "../../axios/path";
+import {IP, report, UID, userloginwhteip} from "../../axios/path";
 
 export default {
     data() {
@@ -1008,6 +1012,30 @@ export default {
         cancelReservedNumber(item) {
             let ptdata = {uid: item.id};
             UID.cancalReserve(ptdata).then((res) => {
+                if (res.ok) {
+                    successTips("操作成功");
+                    this.getData();
+                } else {
+                    msgTips(res);
+                }
+            });
+        },
+        /**添加登录ip白名单 */
+        addLoginWhiteip(item) {
+            let ptdata = {uid: item.id};
+            userloginwhteip.addWhiteIp(ptdata).then((res) => {
+                if (res.ok) {
+                    successTips("操作成功");
+                    this.getData();
+                } else {
+                    msgTips(res);
+                }
+            });
+        },
+        /**取消登录ip白名单 */
+        cancelLoginWhiteip(item) {
+            let ptdata = {uid: item.id};
+            userloginwhteip.cancelWhiteIp(ptdata).then((res) => {
                 if (res.ok) {
                     successTips("操作成功");
                     this.getData();
