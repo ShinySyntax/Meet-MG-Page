@@ -1281,6 +1281,30 @@ const redModifyRules={
         return fetchGet("/redModifyrules/delete",data);
     },
 }
+/**
+ * 敏感词
+ */
+const sensitiveword = {
+    /**
+     * 获取敏感词列表
+     */
+    getList:(data) => {
+        return fetchGet("/sensitive/list", data);
+    },
+    /**
+     * 敏感词删除
+     */
+    del:(data) => {
+        return fetchPost("/sensitive/del", data);
+    },
+    /**
+     * 敏感词增加
+     */
+    add:(data) => {
+        return fetchPost("/sensitive/add", data);
+    }
+}
+
 export {
     html,
     litemall,
@@ -1342,5 +1366,6 @@ export {
     IP,
     redModifyRules,
     deal,
-    userloginwhteip
+    userloginwhteip,
+    sensitiveword
 }
