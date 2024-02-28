@@ -17,7 +17,12 @@
             <div class="contentpad">
                 <el-table  :data="data.list" v-loading="data.loading" :header-cell-style="{background:$protovar.tbhabg}">
                     <el-table-column label="序号" width="80" type="index" :align="$protovar.align" :index="indexMethod" ></el-table-column>
-                    <el-table-column label="敏感词" prop="word"></el-table-column>
+                    
+                    <el-table-column label="敏感词" prop="word">
+                        <template slot-scope="scope">
+                            <span>{{ scope.row }}</span>
+                        </template>
+                    </el-table-column>
                     
                     <el-table-column label="操作"  width="150" v-if="authdisable">
                         <template slot-scope="scope">
@@ -108,7 +113,6 @@ export default {
             let ptdata={};
             sensitiveword.getList(ptdata).then(res=>{
                 if(res.ok){
-                    
                     let data=res.data;
                     if(data){
                         this.data.list=data;
@@ -147,7 +151,7 @@ export default {
         del(item) {
             this.loading=true;
             /* 新增 */
-            let pdata = {id:item.id};
+            let pdata = {word:item};
             sensitiveword.del(pdata).then(res=>{
                 if(res.ok){
                     this.dialog.visible=false;
