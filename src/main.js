@@ -19,7 +19,7 @@ import ElTreeSelect from 'el-tree-select';
 Vue.use(ElTreeSelect);
 
 import {generaMenu,unique} from '@_/utils/common.js';
-import {mgCurr,sysParams,mgMenu,mgAuthPageAuthList,msgTips } from '@_/axios/path.js';
+import {mgCurr,sysParams,mgMenu,mgAuthPageAuthList,msgTips, mgconf} from '@_/axios/path.js';
 
 /* 自定义指令 */
 import  '@_/utils/direct.js';
@@ -37,6 +37,7 @@ Vue.use(VueQuillEditor)
 /* 全局变量 */
 import protovar from '@_/utils/protovar.js';
 Vue.prototype.$protovar=protovar;
+
 //首次访问页面
 let fristVisit=true;
 //菜单列表
@@ -57,6 +58,22 @@ if(tAdminMenu){
 }
 
 router.beforeEach(async (to, from, next) => {
+	var vdata = await mgconf.mgConfList();
+	if (vdata.ok) {
+		var data =vdata.data;
+	
+		var allconfigDict = {};
+		for(var i = 0; i<data.length;i++) {
+			var name = data[i].name;
+			var newname = name.replaceAll(".","_");
+			var value = data[i].value;
+	
+			allconfigDict[newname] = value;
+	
+		}
+		sessionStorage.setItem("allconfig", JSON.stringify(allconfigDict))
+	}
+
 	let topath=to.path;
 	let res;
 	if(topath!='/login'){

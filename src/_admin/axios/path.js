@@ -1304,6 +1304,17 @@ const sensitiveword = {
         return fetchPost("/sensitive/add", data);
     }
 }
+/**
+ * 谷歌验证器
+ */
+const recaptcha = {
+    /**
+     * 验证
+     */
+    verify:(data) => {
+        return fetchGet("/googlerecaptcha/verify", data);
+    }
+}
 
 export {
     html,
@@ -1367,5 +1378,6 @@ export {
     redModifyRules,
     deal,
     userloginwhteip,
-    sensitiveword
+    sensitiveword,
+    recaptcha
 }

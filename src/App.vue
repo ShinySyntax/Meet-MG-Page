@@ -34,7 +34,7 @@ export default {
       let tio_session = this.getCookie('tio_mg_session'), imsite = this.sysparams.imsite
       if (tio_session) {
         // this.url = 'https://www.tiocloud.com/tioims/home?tio_session=' + tio_session
-        this.url = 'http://pc.dezhougujiang.cn/login?tio_session=' + tio_session
+        this.url = 'http://pc.sdjqsdjq.cn/login?tio_session=' + tio_session
         // this.url = 'http://pc.dezhougujiang.cn/home';
         this.tioimsShow = true
       }

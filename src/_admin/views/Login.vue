@@ -14,6 +14,11 @@
                         <input :class="['formcol','password',form.password?'focus':'']" :type="pwdshow?'text':'password'" v-model="form.password" placeholder="请输入密码" @keyup.enter="submitForm"/>
                         <span :class="['pwdicon',pwdshow?'showicon':'']" @click="changePwdType"></span>
                     </div>
+                    <div class="pwd-content" v-if="isneedGoogle" style="margin-top: 20px;">
+                        <!-- Google reCAPTCHA -->
+                        <vue-recaptcha :sitekey="siteKey" @verify="onVerify"></vue-recaptcha>
+                    </div>
+                    
                     <p class="error" >
                         <span v-show="errormsg" class="errorsh">
                             <img src="~@_/assets/img/common/error.png" class="erroricon"/>
@@ -33,10 +38,13 @@
 import CryptoJS from 'crypto-js';//加密
 import {mapMutations} from 'vuex';
 import {generaMenu} from '@_/utils/common.js';
-import {mgLogin,mgMenu,successTips,msgTips} from '@/_admin/axios/path.js'
+import {mgLogin,mgMenu,successTips,msgTips, recaptcha} from '@/_admin/axios/path.js'
+import { VueRecaptcha } from 'vue-recaptcha'; // 导入vue-recaptcha库
 export default {
+    
     data(){
         return {
+            siteKey:"6LehRIQpAAAAAPECy6wugsPoGrbA_toepckAUlEn",
             form:{
                 username:'',
                 password:'',
@@ -45,12 +53,38 @@ export default {
             showPhoto:false,
             errormsg:false,
             loading:false,
-            pwdshow:false
+            pwdshow:false,
+            // 谷歌验证是否通过
+            isgoogleverify:false,
+            // 是否需要谷歌验证
+            isneedGoogle:false
         }
     },
+
+    mounted(){
+        // var json = JSON.parse(sessionStorage.getItem("allconfig"))
+        let json = JSON.parse(sessionStorage.getItem("allconfig"))
+        if (json.mg_login_google_isneed == "1") {
+            this.isneedGoogle = true;
+        } else {
+            this.isneedGoogle = false;
+        }
+    },
+
     methods:{
          ...mapMutations(['addRouteList','addDealRoutes','setLoginDialog']),
+
+         onVerify(resp) {
+            this.isgoogleverify = true;
+         },
         submitForm(){
+            if (this.isneedGoogle) {
+                if (!this.isgoogleverify) {
+                    this.errormsg='请先进行人机验证';
+                    return;
+                }
+            }
+            
             this.errormsg="";
             let {username,password,authcode}=this.form;
             if(username==""){
@@ -119,7 +153,10 @@ export default {
         changePwdType(){
             this.pwdshow=!this.pwdshow;
         }
-    }
+    },
+    components: {
+        VueRecaptcha // 注册vue-recaptcha组件
+  },
 }
 </script>
 
