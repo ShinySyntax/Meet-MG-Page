@@ -73,19 +73,11 @@ module.exports = {
         hotOnly: false,
         proxy: {
             "/tioadmin": {
-				// target: "http://47.98.125.150:6061",
-                // target: "http://129.211.52.247:6061",
                 //服务器
-                //  target: "http://116.62.12.137:6061",
-                // target: "http://192.168.3.25:6061", 
-                
-                // target: "http://192.168.0.111:6061",
                 target: "http://127.0.0.1:6061",
                 // target: "http://120.26.108.188:6061",
                 // target: "http://116.62.211.142:6061",
-                // target: "http://47.97.62.152:6061",
-                // target: "http://103.30.6.30:6061",
-                // target: "http://47.98.186.5:6061",
+                // target: "http://47.97.67.167:6061",
 
                 changeOrigin: true,
                 pathRewrite: {
