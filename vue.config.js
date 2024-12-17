@@ -74,7 +74,7 @@ module.exports = {
         proxy: {
             "/tioadmin": {
                 //服务器
-                target: "http://127.0.0.1:6061",
+                target: "http://121.43.236.18:6061",
                 // target: "http://120.26.108.188:6061",
                 // target: "http://116.62.211.142:6061",
                 // target: "http://47.97.67.167:6061",
@@ -86,6 +86,7 @@ module.exports = {
                 // cookieDomainRewrite:'192.168.1.8'//重写cookie 的domain
                 cookieDomainRewrite:''//重写cookie 的domain
             },
+            
         },
         before: app => {}
     }
